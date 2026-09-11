@@ -1,0 +1,21 @@
+{
+  "name": "halomio",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently --names \"BACKEND,FRONTEND\" --prefix-colors \"cyan,magenta\" \"npm run dev:assistant\" \"npm run dev:web\"",
+    "cli": "node apps/assistant/cli.js",
+    "dev:assistant": "npm run dev --workspace=assistant",
+    "dev:web": "npm run dev --workspace=web",
+    "dev:tracking": "npm run dev --workspace=tracking",
+    "build:web": "npm run build --workspace=web",
+    "setup:python": "python -m venv .venv && .\\.venv\\Scripts\\pip install -r requirements.txt"
+  },
+
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

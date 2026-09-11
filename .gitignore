@@ -1,0 +1,19 @@
+node_modules/
+.venv/
+venv/
+__pycache__/
+.env
+dist/
+
+# Persistent App Storage
+apps/assistant/memory/
+apps/assistant/database/
+apps/assistant/Wa_session/
+apps/assistant/storage/
+apps/assistant/logs/
+apps/assistant/mio_workspace/
+apps/assistant/.env
+apps/tracking/.env
+apps/tracking/sql/*.sqlite
+apps/tracking/logs/
+apps/web/public/*
