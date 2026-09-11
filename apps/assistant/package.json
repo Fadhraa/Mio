@@ -1,0 +1,35 @@
+{
+  "name": "assistant",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/test_server_security.js",
+    "dev": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/classic": "^1.0.34",
+    "@langchain/community": "^1.1.28",
+    "@langchain/core": "^1.1.48",
+    "@langchain/google-genai": "^2.2.0",
+    "@langchain/ollama": "^1.2.7",
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.7",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "langchain": "^1.4.2",
+    "ollama": "^0.6.3",
+    "pino": "^10.3.1",
+    "qrcode-terminal": "^0.12.0",
+    "screenshot-desktop": "^1.15.4",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1",
+    "yt-search": "^2.13.1",
+    "zod": "^3.23.8"
+  }
+}

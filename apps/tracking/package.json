@@ -1,0 +1,19 @@
+{
+  "name": "tracking",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node track.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "active-win": "^8.2.1",
+    "dotenv": "^16.4.7",
+    "openai": "^6.36.0",
+    "sqlite3": "^6.0.1"
+  }
+}
