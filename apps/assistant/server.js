@@ -64,11 +64,12 @@ export function mulaiServer(port = 3000) {
     helmet({
       contentSecurityPolicy: false,
       crossOriginEmbedderPolicy: false,
-    })
+    }),
   );
 
   // 2. CORS Policy: Membatasi origin yang boleh mengakses API
-  const defaultOrigins = "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000";
+  const defaultOrigins =
+    "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000";
   const allowedOrigins = (process.env.CORS_ORIGIN || defaultOrigins)
     .split(",")
     .map((o) => o.trim())
@@ -82,12 +83,16 @@ export function mulaiServer(port = 3000) {
         if (allowedOrigins.includes(origin) || allowedOrigins.includes("*")) {
           return callback(null, true);
         }
-        return callback(new Error(`CORS Policy: Origin ${origin} tidak diizinkan oleh sistem keamanan Mio.`));
+        return callback(
+          new Error(
+            `CORS Policy: Origin ${origin} tidak diizinkan oleh sistem keamanan Mio.`,
+          ),
+        );
       },
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
-    })
+    }),
   );
 
   // 3. Middleware parsing JSON
@@ -125,7 +130,7 @@ export function mulaiServer(port = 3000) {
     try {
       // Jika ada kiriman gambar, analisis dulu dengan Gemini Flash
       if (image) {
-        console.log("📸 Menganalisis gambar menggunakan Gemini 1.5 Flash...");
+        console.log("📸 Menganalisis gambar menggunakan Gemini 3.5 Flash...");
         visualDescription = await analisisGambarDenganGemini(image);
         console.log("🔍 Hasil Analisis Gambar:", visualDescription);
 
@@ -168,8 +173,9 @@ export function mulaiServer(port = 3000) {
   // Mulai mendengarkan request
   app.listen(serverPort, () => {
     console.log(`\n======================================================`);
-    console.log(`🔒 Mio Web Server aktif (API Key Secured): http://localhost:${serverPort}`);
+    console.log(
+      `🔒 Mio Web Server aktif (API Key Secured): http://localhost:${serverPort}`,
+    );
     console.log(`======================================================\n`);
   });
 }
-

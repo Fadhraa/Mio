@@ -7,12 +7,15 @@ import fs from "fs";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Muat konfigurasi .env jika belum termuat
-const envPath = path.join(__dirname, ".env");
-if (fs.existsSync(envPath)) {
+// Muat konfigurasi .env dari root monorepo atau fallback lokal
+const rootEnvPath = path.resolve(__dirname, "../../.env");
+const localEnvPath = path.join(__dirname, ".env");
+const targetEnv = fs.existsSync(rootEnvPath) ? rootEnvPath : localEnvPath;
+if (fs.existsSync(targetEnv)) {
   const dotenv = await import("dotenv");
-  dotenv.config({ path: envPath });
+  dotenv.config({ path: targetEnv });
 }
+
 
 const SERVER_URL = process.env.MIO_SERVER_URL || "http://localhost:3000";
 const API_KEY = process.env.MIO_API_KEY;
