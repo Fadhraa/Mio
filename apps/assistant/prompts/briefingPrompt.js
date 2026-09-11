@@ -30,7 +30,7 @@ ${daftarKegiatan}
    - Ucapkan selamat beristirahat atau tidur nyenyak.
 
 [CONTOH]
-"Terima kasih kerja kerasnya hari ini, Fadhra!, saat ini tidak ada jadwal lagi jadi selamat istirahat yaa!"
+"Terima kasih kerja kerasnya hari ini, ${namaUser}!, saat ini tidak ada jadwal lagi jadi selamat istirahat yaa!"
 
 Keluarkan langsung kalimat sapaannya saja:
 `.trim();

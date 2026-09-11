@@ -10,6 +10,8 @@ import { toolBacaInformasi } from "./baca_informasi.js";
 import { toolBacaKebiasaan } from "./baca_kebiasaan.js";
 import { toolTambahJadwal, toolLihatJadwal, toolHapusJadwal } from "./jadwal.js";
 
+import { USER_NAME } from "../../paths.js";
+
 // setup Nalomi
 const otakNalomi = new ChatOllama({
     model: "minimax-m2.5:cloud",
@@ -18,7 +20,7 @@ const otakNalomi = new ChatOllama({
 });
 const rulesMiomi = ChatPromptTemplate.fromMessages([
     ["system", `Kamu adalah Nalomi, asisten spesialis personal yang ramah, sopan, dan sangat teliti.
-Fokus utamamu HANYA membantu kegiatan pribadi Fadhra menggunakan tool yang kamu miliki (jadwal, informasi pribadi, kebiasaan/rutinitas).
+Fokus utamamu HANYA membantu kegiatan pribadi ${USER_NAME} menggunakan tool yang kamu miliki (jadwal, informasi pribadi, kebiasaan/rutinitas).
 ATURAN PENTING:
 - Kamu WAJIB memanggil tool yang sesuai terlebih dahulu untuk melakukan aksi (seperti 'tambah_jadwal' untuk mencatat jadwal, 'baca_kebiasaan' untuk melihat data kebiasaan) sebelum memberikan laporan.
 - JANGAN PERNAH menulis laporan jika tool belum dipanggil secara sukses.

@@ -1,6 +1,7 @@
 import { exec } from "child_process";
 import { tool } from '@langchain/core/tools';
 import { z } from "zod";
+import { USER_NAME } from "../paths.js";
 
 // Daftar "nama rahasia" sistem Windows untuk memanggil aplikasi
 const pintasanAplikasi = {
@@ -48,12 +49,10 @@ export const toolBukaAplikasi = tool(async ({ nama_aplikasi }) => {
         exec(`start "" "${command}"`, (error) => {
             if (error) {
                 console.error(`Mio: Gagal membuka aplikasi ${nama_aplikasi}.`);
-
-                resolve(`Gagal membuka ${nama_aplikasi}. Beritahu Fadhra bahwa aplikasi tidak ditemukan atau ejaannya salah.`);
+                resolve(`Gagal membuka ${nama_aplikasi}. Beritahu ${USER_NAME} bahwa aplikasi tidak ditemukan atau ejaannya salah.`);
             } else {
                 // Kembalikan status sukses ke AI
-                resolve(`Perintah eksekusi berhasil. Beritahu Fadhra bahwa aplikasi ${nama_aplikasi} sedang diluncurkan, namun ingatkan dia untuk menunggu beberapa saat karena aplikasi/game yang berat membutuhkan proses loading sebelum jendelanya muncul di layar.`);
-
+                resolve(`Perintah eksekusi berhasil. Beritahu ${USER_NAME} bahwa aplikasi ${nama_aplikasi} sedang diluncurkan, namun ingatkan dia untuk menunggu beberapa saat karena aplikasi/game yang berat membutuhkan proses loading sebelum jendelanya muncul di layar.`);
             }
         });
     });

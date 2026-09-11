@@ -7,6 +7,8 @@ let briefingCache = {
   text: null,
   timestamp: 0,
 };
+import { USER_NAME } from "../paths.js";
+
 const TTL_CACHE_MS = 15 * 60 * 1000;
 function getOllamaModel() {
   return new ChatOllama({
@@ -15,7 +17,7 @@ function getOllamaModel() {
   });
 }
 export async function getBriefingDashboard(
-  namaUser = "Fadhra",
+  namaUser = USER_NAME,
   forceRefresh = false,
 ) {
   const sekarang = new Date();

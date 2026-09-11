@@ -1,5 +1,6 @@
-import "dotenv/config";
+import "./paths.js";
 import readline from "readline";
+
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";

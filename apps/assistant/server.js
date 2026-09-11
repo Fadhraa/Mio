@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./paths.js";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -11,6 +11,8 @@ import { jalankanMio } from "./agent.js";
 import { ambilJadwal } from "./controllers/jadwalController.js";
 import { getBriefingDashboard } from "./services/briefingService.js";
 import { requireApiKey } from "./middlewares/authMiddleware.js";
+import { USER_NAME } from "./paths.js";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -135,7 +137,7 @@ export function mulaiServer(port = 3000) {
         console.log("🔍 Hasil Analisis Gambar:", visualDescription);
 
         // Sisipkan deskripsi visual ini sebagai konteks tambahan bagi Agen Utama Mio
-        inputUntukMio = `[Gambar yang diunggah/di-paste oleh Fadhra]:\n${visualDescription}\n\n[Pesan/Pertanyaan Fadhra]:\n${message || "Jelaskan gambar tersebut."}`;
+        inputUntukMio = `[Gambar yang diunggah/di-paste oleh ${USER_NAME}]:\n${visualDescription}\n\n[Pesan/Pertanyaan ${USER_NAME}]:\n${message || "Jelaskan gambar tersebut."}`;
       }
 
       // Jalankan Mio AI (dari agent.js)
@@ -162,13 +164,14 @@ export function mulaiServer(port = 3000) {
   app.get("/api/dashboard/briefing", async (req, res) => {
     try {
       const isFresh = req.query.fresh === "true";
-      const hasil = await getBriefingDashboard("Fadhra", isFresh);
+      const hasil = await getBriefingDashboard(USER_NAME, isFresh);
       res.json(hasil);
     } catch (err) {
       console.error("Gagal mengambil briefing:", err);
       res.status(500).json({ error: "Gagal memproses briefing AI" });
     }
   });
+
 
   // Mulai mendengarkan request
   app.listen(serverPort, () => {

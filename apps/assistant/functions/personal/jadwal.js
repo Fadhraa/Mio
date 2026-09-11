@@ -6,19 +6,21 @@ import {
   hapusJadwalService,
 } from "../../services/jadwalService.js";
 
+import { USER_NAME } from "../../paths.js";
+
 export const toolLihatJadwal = tool(
   async ({}) => {
     const semuaJadwal = bacaSemuaJadwal();
     if (!semuaJadwal || semuaJadwal.length === 0) {
-      return "Tidak ada jadwal yang tersimpan di database.";
+      return `Tidak ada jadwal yang tersimpan di database untuk ${USER_NAME}.`;
     }
 
-    return `Berikut adalah semua jadwal Fadhra yang tersimpan di database:\n${JSON.stringify(semuaJadwal, null, 2)}`;
+    return `Berikut adalah semua jadwal ${USER_NAME} yang tersimpan di database:\n${JSON.stringify(semuaJadwal, null, 2)}`;
   },
   {
     name: "lihat_jadwal",
     description:
-      "Gunakan alat ini untuk membantu Fadhra melihat jadwal yang sudah tercatat di database.",
+      "Gunakan alat ini untuk melihat jadwal yang sudah tercatat di database.",
     schema: z.object({}),
   },
 );

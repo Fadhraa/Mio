@@ -1,6 +1,15 @@
 const { OpenAI } = require("openai");
 const path = require("path");
-require("dotenv").config();
+const fs = require("fs");
+
+const rootEnv = path.resolve(__dirname, "../../../.env");
+if (fs.existsSync(rootEnv)) {
+  require("dotenv").config({ path: rootEnv });
+} else {
+  require("dotenv").config();
+}
+
+const USER_NAME = process.env.USER_NAME || "User";
 
 const openai = new OpenAI({
   apiKey: process.env.NVIDIA_API_KEY,
@@ -87,7 +96,7 @@ async function summarizeActivities(activitiesArray) {
     .join("\n");
   // 2. Buat instruksi (Prompt) untuk Batch Processing
 
-  const systemPrompt = `Anda adalah asisten data logger milik Fadhra, seorang programmer.
+  const systemPrompt = `Anda adalah asisten data logger milik ${USER_NAME}, seorang pengguna komputer.
     Tugas Anda adalah merangkum log aktivitas layar menjadi objek JSON.
     Aturan Wajib:
     1. PENGGABUNGAN (PENTING!): Jangan buat 1 objek JSON untuk tiap 1 baris log. Anda HARUS menggabungkan log-log yang memiliki konteks/aplikasi yang sama menjadi SATU sesi besar.
@@ -111,7 +120,7 @@ async function summarizeActivities(activitiesArray) {
           "start_time": "14:10:05",
           "total_duration_seconds": 120,
           "apps_used": ["App1"],
-          "summary": "Fadhra fokus ngoding..."
+          "summary": "${USER_NAME} fokus beraktivitas..."
         }
       ],
       "learned_mappings": []

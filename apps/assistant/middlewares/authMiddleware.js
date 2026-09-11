@@ -1,3 +1,4 @@
+import "../paths.js";
 import crypto from "crypto";
 
 /**

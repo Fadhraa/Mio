@@ -1,5 +1,7 @@
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -8,6 +10,19 @@ const __filename = fileURLToPath(import.meta.url);
  * Menghindari ketergantungan pada process.cwd() yang berubah saat dijalankan dari root monorepo.
  */
 export const ASSISTANT_ROOT = path.dirname(__filename);
+export const ROOT_DIR = path.resolve(ASSISTANT_ROOT, "../..");
+
+// Pemuatan .env secara deterministik dari root monorepo atau fallback lokal
+const rootEnvPath = path.join(ROOT_DIR, ".env");
+const localEnvPath = path.join(ASSISTANT_ROOT, ".env");
+const targetEnv = fs.existsSync(rootEnvPath) ? rootEnvPath : localEnvPath;
+if (fs.existsSync(targetEnv)) {
+  dotenv.config({ path: targetEnv });
+}
+
+// Konfigurasi Nama Pengguna Terabstraksi
+export const USER_NAME = process.env.USER_NAME || "User";
+
 
 // Direktori Utama
 export const MEMORY_DIR = path.join(ASSISTANT_ROOT, "memory");

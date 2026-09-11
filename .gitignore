@@ -16,4 +16,5 @@ apps/assistant/.env
 apps/tracking/.env
 apps/tracking/sql/*.sqlite
 apps/tracking/logs/
+apps/tracking/viewer.html
 apps/web/public/*

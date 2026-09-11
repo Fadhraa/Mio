@@ -2,9 +2,9 @@ import fs from "fs";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
 import path from "path";
-import { INFORMATION_PATH } from "../../paths.js";
+import { INFORMATION_PATH, USER_NAME } from "../../paths.js";
 
-export const kelolaInformasiFadhra = tool(async ({ key, value }) => {
+export const kelolaInformasiUser = tool(async ({ key, value }) => {
     try {
         let data = {};
         if (fs.existsSync(INFORMATION_PATH)) {
@@ -20,14 +20,14 @@ export const kelolaInformasiFadhra = tool(async ({ key, value }) => {
         }
         
         fs.writeFileSync(INFORMATION_PATH, JSON.stringify(data, null, 2), 'utf-8');
-        return `Informasi tentang Fadhra berhasil disimpan: ${key}: ${value}`;
+        return `Informasi tentang ${USER_NAME} berhasil disimpan: ${key}: ${value}`;
     } catch (error) {
 
         return `Gagal menyimpan informasi: ${error.message}`;
     }
 }, {
-    name: "kelola_informasi_fadhra",
-    description: "Gunakan alat ini JIKA Fadhra memberikan informasi apapun itu dan harus diingat. Berikan instruksi yang jelas kepada Nalomi agar dia bisa mengerjakannya.",
+    name: "kelola_informasi_user",
+    description: "Gunakan alat ini jika pengguna memberikan informasi tentang dirinya atau sekitarnya yang harus diingat.",
     schema: z.object({
         key: z.string().describe("Kunci informasi yang akan disimpan"),
         value: z.string().describe("Nilai informasi yang akan disimpan")

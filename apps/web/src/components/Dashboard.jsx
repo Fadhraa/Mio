@@ -85,9 +85,9 @@ export default function App() {
 
             {/* welcome section */}
             <section className='mb-12'>
-                <div className='flex flex-col md:flex-row md:items-center md:justify-between'>
-                    <div className='w-156 flex gap-4 flex-col'>
-                        <h1 className='text-headline-lg text-[48px] font-headline-lg text-gray-800'>Selamat Pagi, Fadhra</h1>
+                <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-6'>
+                    <div className='max-w-2xl flex gap-4 flex-col'>
+                        <h1 className='text-headline-lg text-[48px] font-headline-lg text-gray-800'>Selamat Pagi, {import.meta.env.VITE_USER_NAME || "User"}</h1>
                         {/* rangkuman Ai */}
                        <div className="min-h-[48px]">
     {isBriefingLoading ? (
@@ -102,9 +102,15 @@ export default function App() {
     )}
 </div>
                     </div>
-                    <div className='relative w-96 h-36 p-1 bg-white shadow-[0_8px_40px_10px_rgba(255,107,53,0.2)] rounded-xl '>
-                        <img className='rounded-xl w-full h-full object-cover object-[center_20%]' src="/Dania_bajuhitam.jpeg" alt="" />
-                        <div className='absolute left-[-15px] bottom-[-15px] bg-white rounded-xl p-1 font-satisfy animate-bounce'>❤️ Ma bee</div>
+                    <div className='w-80 p-4 bg-white border border-slate-200 rounded-xl shadow-sm flex items-center gap-4'>
+                        <div className='w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 font-semibold border border-slate-200'>
+                            MIO
+                        </div>
+                        <div>
+                            <div className='text-xs font-semibold text-emerald-600 tracking-wider uppercase'>Core Active</div>
+                            <div className='text-sm font-medium text-slate-800'>AI Assistant Ready</div>
+                            <div className='text-xs text-slate-500'>Ollama & Services Connected</div>
+                        </div>
                     </div>
 
                 </div>

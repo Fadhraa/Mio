@@ -15,10 +15,11 @@ export default function App() {
     const [currentTime, setCurrentTime] = useState('');
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const [hasKey, setHasKey] = useState(!!getStoredApiKey());
+    const userName = import.meta.env.VITE_USER_NAME || "User";
     const [messages, setMessages] = useState([
         {
             sender: 'bot',
-            text: 'Halo Fadhra! Tampilan dashboard React + Tailwind aku sudah siap. Sekarang aku juga bisa menerima tangkapan layar (screenshot) lewat tombol klip atau langsung kamu paste (Ctrl+V) ke sini!'
+            text: `Halo ${userName}! Tampilan dashboard React + Tailwind aku sudah siap. Sekarang aku juga bisa menerima tangkapan layar (screenshot) lewat tombol klip atau langsung kamu paste (Ctrl+V) ke sini!`
         }
     ]);
 
