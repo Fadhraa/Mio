@@ -18,3 +18,5 @@ apps/tracking/sql/*.sqlite
 apps/tracking/logs/
 apps/tracking/viewer.html
 apps/web/public/*
+
+PROJECT_SUMMARY.md

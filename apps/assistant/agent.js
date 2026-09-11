@@ -22,7 +22,7 @@ import { toolCekAktivitas } from "./functions/cek_aktivitas.js";
 import { toolKelolaGoogleDoc } from "./functions/akademik/docs.js";
 // buka aplikasi
 import { toolBukaAplikasi } from "./functions/buka_aplikasi.js";
-// Membaca kebiasaan fadhra
+// Membaca kebiasaan pengguna
 import { dapatkanKebiasaan } from "./functions/habit_memory.js";
 
 import { USER_NAME } from "./paths.js";

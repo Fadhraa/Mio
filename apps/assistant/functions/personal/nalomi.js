@@ -49,8 +49,8 @@ export const panggilNalomi = tool(async ({ instruksi }) => {
     return result.output;
 }, {
     name: "panggil_agen_personal_nalomi",
-    description: "PENTING: Gunakan alat ini JIKA Fadhra menanyakan informasi/fakta masa lalu (contoh: 'siapa pacarku?', 'apa makanan kesukaanku?') ATAU untuk keperluan pribadi seperti jadwal dan alarm.",
+    description: "PENTING: Gunakan alat ini JIKA pengguna menanyakan informasi/fakta masa lalu (contoh: 'siapa pacarku?', 'apa makanan kesukaanku?') ATAU untuk keperluan pribadi seperti jadwal dan alarm.",
     schema: z.object({
-        instruksi: z.string().describe("Perintah lengkap dan spesifik tentang apa yang harus Nalomi kerjakan untuk Fadhra.")
+        instruksi: z.string().describe("Perintah lengkap dan spesifik tentang apa yang harus Nalomi kerjakan untuk pengguna.")
     })
 });

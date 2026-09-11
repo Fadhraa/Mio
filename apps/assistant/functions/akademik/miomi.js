@@ -54,8 +54,8 @@ export const panggilMiomi = tool(async ({ instruksi }) => {
     return result.output;
 }, {
     name: "panggil_agen_akademik_miomi",
-    description: "PENTING: Gunakan alat ini JIKA Fadhra meminta bantuan terkait akademik, tugas sekolah/kuliah, belajar, atau MENCATAT/MENYIMPAN tugas baru. Berikan instruksi yang jelas kepada Miomi agar dia bisa mengerjakannya.",
+    description: "PENTING: Gunakan alat ini JIKA pengguna meminta bantuan terkait akademik, tugas sekolah/kuliah, belajar, atau MENCATAT/MENYIMPAN tugas baru. Berikan instruksi yang jelas kepada Miomi agar dia bisa mengerjakannya.",
     schema: z.object({
-        instruksi: z.string().describe("Perintah lengkap dan spesifik tentang apa yang harus Miomi kerjakan untuk Fadhra.")
+        instruksi: z.string().describe("Perintah lengkap dan spesifik tentang apa yang harus Miomi kerjakan untuk pengguna.")
     })
 });
