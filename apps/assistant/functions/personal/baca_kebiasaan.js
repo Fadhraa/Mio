@@ -26,5 +26,5 @@ export const toolBacaKebiasaan = tool(async () => {
     return `Tidak ada kebiasaan yang tersimpan tentang ${USER_NAME}.`;
 }, {
     name: "baca_kebiasaan",
-    description: "Gunakan alat ini untuk membaca seluruh database kebiasaan, preferensi berulang, hobi, dan rutinitas pengguna. Alat ini berguna ketika pengguna menanyakan kebiasaannya atau menyuruh Anda memindahkan data kebiasaan ke dokumen lain.",
+    description: "Gunakan alat ini HANYA untuk membaca daftar kebiasaan berulang, rutinitas, dan hobi pengguna (contoh: biasa memutar musik di youtube, web nonton anime favorit). JANGAN gunakan alat ini untuk mencari nama orang atau fakta biodata.",
 });

@@ -12,6 +12,6 @@ export const toolBacaInformasi = tool(async () => {
     return `Tidak ada informasi yang tersimpan tentang ${USER_NAME}.`;
 }, {
     name: "baca_informasi",
-    description: "Gunakan alat ini untuk membaca seluruh informasi/database yang tersimpan tentang pengguna. LLM bisa membaca seluruh datanya dan mencari jawabannya sendiri.",
+    description: "Gunakan alat ini untuk membaca fakta statis personal pengguna (seperti nama orang, siapa pacar/pasangan, teman, keluarga, hewan peliharaan, makanan kesukaan, biodata).",
 })
 

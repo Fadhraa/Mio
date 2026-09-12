@@ -56,7 +56,7 @@ export const toolTambahJadwal = tool(
   {
     name: "tambah_jadwal",
     description:
-      "Mencatat jadwal kuliah, rutinitas, atau agenda acara pengguna ke database.",
+      "Gunakan alat ini untuk mencatat jadwal kuliah, rutinitas, atau agenda acara pengguna ke database.",
     schema: z.object({
       title: z.string().describe("Nama mata kuliah atau kegiatan"),
       category: z
@@ -117,4 +117,3 @@ export const toolHapusJadwal = tool(
     }),
   },
 );
-

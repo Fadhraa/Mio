@@ -7,7 +7,7 @@ import { get_currentTime } from "../get_currentTime.js";
 import { USER_NAME } from "../../paths.js";
 
 const otakObserver = new ChatOllama({
-    model: "devstral-2:123b-cloud",
+    model: "gemma4:31b-cloud",
     temperature: 0.1,
     think: false,
 });
