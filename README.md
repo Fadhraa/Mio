@@ -50,23 +50,29 @@ Mio/
 ## Panduan Instalasi & Menjalankan
 
 ### 1. Prasyarat Sistem
+
 - Node.js >= 18.0.0
 - Python 3.10+ (opsional, untuk modul deteksi suara latar)
 - [Ollama](https://ollama.com/) dengan model yang diperlukan (misal: gemma4:31b-cloud, qwen2.5:3b)
 
 ### 2. Klon Repositori & Instal Dependensi
-`ash
+
+```bash
 git clone https://github.com/Fadhraa/Mio.git
 cd Mio
 npm install
 ```
 
 ### 3. Konfigurasi Environment Terpadu
+
 Salin template .env.example ke root .env:
-`ash
+
+```bash
 cp .env.example .env
 ```
+
 Buka file .env dan sesuaikan nilainya:
+
 - USER_NAME: Nama pengguna yang akan dipelajari dan disapa oleh Mio.
 - MIO_API_KEY: Kunci otentikasi unik untuk mengamankan API (gunakan string acak berentropi tinggi).
 - VITE_MIO_API_KEY: Samakan nilainya dengan MIO_API_KEY agar dashboard web otomatis terhubung.
@@ -75,15 +81,19 @@ Buka file .env dan sesuaikan nilainya:
 ### 4. Menjalankan Aplikasi
 
 #### Menjalankan Seluruh Ekosistem (Backend Server + Web UI):
-`ash
+
+```bash
 npm run dev
 ```
+
 - Web Dashboard: http://localhost:5173
 - Backend API: http://localhost:3000
 
 #### Menjalankan Interactive CLI Client:
+
 Buka terminal baru saat server sedang berjalan:
-`ash
+
+```bash
 npm run cli
 ```
 
@@ -92,7 +102,8 @@ npm run cli
 ## Pengujian Keamanan & Integritas
 
 Repositori ini dilengkapi rangkaian tes otomatis:
-`ash
+
+```bash
 # Uji keamanan API Key & Server Hardening
 npm test --workspace=assistant
 
