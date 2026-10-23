@@ -11,9 +11,12 @@
     "dev:assistant": "npm run dev --workspace=assistant",
     "dev:web": "npm run dev --workspace=web",
     "dev:tracking": "npm run dev --workspace=tracking",
+    "dev:notch": "cargo run --manifest-path apps/notch/Cargo.toml",
+    "build:notch": "cargo build --release --manifest-path apps/notch/Cargo.toml",
     "consolidate:tracking": "npm run consolidate --workspace=tracking",
     "build:web": "npm run build --workspace=web",
     "setup:python": "python -m venv .venv && .\\.venv\\Scripts\\pip install -r requirements.txt"
+
   },
 
   "devDependencies": {

@@ -19,4 +19,8 @@ apps/tracking/logs/
 apps/tracking/viewer.html
 apps/web/public/*
 
-PROJECT_SUMMARY.md
+# Rust build artifacts
+target/
+**/target/
+
+PROJECT_SUMMARY.md

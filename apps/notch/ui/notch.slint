@@ -1,0 +1,84 @@
+export component NotchWindow inherits Window {
+    in-out property <string> app_name: "Menghubungkan...";
+    in-out property <string> category_name: "STANDBY";
+    in-out property <string> duration_text: "0s";
+    in-out property <bool> is_idle: false;
+    in-out property <bool> is_connected: false;
+
+    title: "Mio Notch";
+    no-frame: true;
+    always-on-top: true;
+    background: transparent;
+    width: 290px;
+    height: 42px;
+
+    Rectangle {
+        width: 100%;
+        height: 100%;
+        border-radius: 21px;
+        background: #11111bd9;
+        border-width: 1px;
+        border-color: is_connected ? (is_idle ? #fab387aa : #89b4fa66) : #45475a88;
+
+        HorizontalLayout {
+            padding-left: 14px;
+            padding-right: 14px;
+            spacing: 8px;
+
+            // Kiri: Status Dot & Nama Aplikasi
+            HorizontalLayout {
+                spacing: 8px;
+                horizontal-stretch: 1;
+
+                Rectangle {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 4px;
+                    background: !is_connected ? #6c7086 : (is_idle ? #fab387 : #a6e3a1);
+                    y: (parent.height - self.height) / 2;
+                }
+
+                Text {
+                    text: root.app_name;
+                    color: #cdd6f4;
+                    font-size: 11px;
+                    font-weight: 700;
+                    overflow: elide;
+                    vertical-alignment: center;
+                }
+            }
+
+            // Kanan: Kategori & Durasi
+            HorizontalLayout {
+                spacing: 6px;
+                horizontal-stretch: 0;
+
+                Rectangle {
+                    background: #31324499;
+                    border-radius: 6px;
+                    height: 20px;
+                    y: (parent.height - self.height) / 2;
+
+                    HorizontalLayout {
+                        padding-left: 6px;
+                        padding-right: 6px;
+                        Text {
+                            text: root.category_name;
+                            color: is_idle ? #fab387 : #89b4fa;
+                            font-size: 9px;
+                            font-weight: 700;
+                            vertical-alignment: center;
+                        }
+                    }
+                }
+
+                Text {
+                    text: root.duration_text;
+                    color: #a6adc8;
+                    font-size: 10px;
+                    vertical-alignment: center;
+                }
+            }
+        }
+    }
+}
