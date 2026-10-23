@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node track.js"
+    "test": "node tests/test_classifier.js",
+    "dev": "node track.js",
+    "consolidate": "node consolidate_daily.js"
   },
   "keywords": [],
   "author": "",

@@ -120,14 +120,40 @@ function saveRawActivityToDB(rawActivity, sessionId) {
     stmt.finalize();
   });
 }
-// Menyimpan aplikasi yang telah dikategorikan oleh AI
+const BROWSER_AND_CONTAINER_APPS = [
+  "msedge",
+  "microsoft edge",
+  "chrome",
+  "google chrome",
+  "brave",
+  "firefox",
+  "opera",
+  "vivaldi",
+  "explorer",
+  "windows explorer"
+];
+
+function isForbiddenLearnedApp(appName) {
+  if (!appName || typeof appName !== "string") return true;
+  const clean = appName.trim().toLowerCase();
+  if (clean.length < 2 || clean.length > 35) return true;
+  if (clean.includes(" - ") || clean.includes(" and ") || clean.includes("http")) return true;
+  return BROWSER_AND_CONTAINER_APPS.some((b) => clean.includes(b));
+}
+
+// Menyimpan aplikasi yang telah dikategorikan oleh AI dengan validasi ketat
 function saveLearnedCategory(appName, category) {
   return new Promise((resolve, reject) => {
+    if (isForbiddenLearnedApp(appName)) {
+      console.log(`[DB Shield] Mengabaikan learned category tidak valid: "${appName}"`);
+      return resolve();
+    }
+
     const stmt = db.prepare(`
       INSERT OR REPLACE INTO learned_categories (app_name, category)
       VALUES (?, ?)
     `);
-    stmt.run(appName, category, function (err) {
+    stmt.run(appName.trim(), category, function (err) {
       if (err) {
         console.error("[DB Error] Gagal simpan learned category:", err.message);
         reject(err);
@@ -135,6 +161,39 @@ function saveLearnedCategory(appName, category) {
         resolve();
       }
     });
+    stmt.finalize();
+  });
+}
+
+// Fungsi untuk menyimpan log aktivitas mentah langsung ke SQLite tanpa menunggu sesi AI
+function saveRawActivityDirectly(rawActivity) {
+  return new Promise((resolve, reject) => {
+    const stmt = db.prepare(`
+      INSERT INTO raw_activities 
+      (session_id, category, project_context, app, window_title, day_of_week, hours_of_day, start_time, duration, startTimeMs) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    stmt.run(
+      null,
+      rawActivity.category || "Unknown",
+      rawActivity.project_context || "Unknown",
+      rawActivity.app || "Unknown",
+      rawActivity.window_title || "Unknown",
+      rawActivity.day_of_week || "",
+      rawActivity.hours_of_day !== undefined ? rawActivity.hours_of_day : 0,
+      rawActivity.start || "",
+      rawActivity.duration || 0,
+      rawActivity.startTimeMs || 0,
+      function (err) {
+        if (err) {
+          console.error("[DB Error] Gagal simpan raw activity langsung ke SQLite:", err.message);
+          reject(err);
+        } else {
+          resolve(this.lastID);
+        }
+      }
+    );
     stmt.finalize();
   });
 }
@@ -217,5 +276,7 @@ module.exports = {
   clearAllSessions,
   clearAllLearnedCategories,
   saveRawActivityToDB,
+  saveRawActivityDirectly,
+  isForbiddenLearnedApp,
   db,
 };
